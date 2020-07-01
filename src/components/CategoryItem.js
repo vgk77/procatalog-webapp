@@ -9,7 +9,11 @@ const CategoryItem = ({ data }) => {
 			{data.category}
 			<StyledCategoryItem>
     			{data.tags.map(tag => (
-    				<Tag key={tag} value={tag} />
+					<Tag
+						key={tag}
+						value={tag}
+						category={data.category}
+					/>
     			))}
 			</StyledCategoryItem>
 		</StyledCategoryItemContainer>

@@ -7,5 +7,5 @@ export const ACTIONS = {
 
 export const filterInitState = {
 	search: '',
-	tags: [ALL_CATEGORIES_TAG],
+	tags: [],
 };
