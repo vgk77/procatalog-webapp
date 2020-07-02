@@ -2,21 +2,19 @@ import React from 'react';
 import { StyledWrapper, StyledContainer } from '../styles';
 import { BrowserRouter } from 'react-router-dom';
 import Search from './Search';
-import ItemsContainer from './ItemsContainer';
-import Tags from './Tags';
+import Items from './Items';
+import Filters from './Filters';
 
-const App = () => {
-	return (
-		<StyledWrapper>
-			<StyledContainer>
+const App = () => (
+	<StyledWrapper>
+		<StyledContainer>
   			<Search />
-				<Tags />
+			<Filters />
   			<BrowserRouter>
-  				<ItemsContainer />
+  				<Items />
   			</BrowserRouter>
-			</StyledContainer>
-		</StyledWrapper>
-	);
-};
+		</StyledContainer>
+	</StyledWrapper>
+);
 
 export default App;

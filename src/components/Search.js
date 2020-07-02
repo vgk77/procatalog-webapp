@@ -1,21 +1,32 @@
 import React from 'react';
-import { StyledSearch } from '../styles';
+import { StyledSearchContainer, StyledSearch } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFilter } from '../actions';
+import { updateFilter, updateSettings } from '../actions';
+import Tags from './Tags';
 
 const Search = () => {
-	const { filter } = useSelector(store => store);
+	const { filter, settings } = useSelector(store => store);
 	const dispatch = useDispatch();
 
 	const handleOnChange = event => {
 		dispatch(updateFilter({ search: event.target.value }));
 	};
 
+	const handleOnClickToggle = () => {
+		dispatch(updateSettings({ showFilters: !settings.showFilters }));
+	};
+
 	return (
-		<StyledSearch
-			value={filter.search}
-			onChange={handleOnChange}
-		/>
+		<div>
+			<StyledSearchContainer>
+				<button onClick={handleOnClickToggle}>show</button>
+				<StyledSearch
+					value={filter.search}
+					onChange={handleOnChange}
+				/>
+			</StyledSearchContainer>
+			<Tags />
+		</div>
 	);
 };
 

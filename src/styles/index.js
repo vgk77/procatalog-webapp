@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledWrapper = styled.div`
-  height: 100vh;
+  min-height: 100vh;
   background: #262626;
   display: flex;
   align-items: center;
@@ -17,7 +17,10 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledTag = styled.div`
-    background-color: #9a9a9a; /* #464646 */
+    background-color: ${props => props.selected
+		? '#bcbcbc'
+		: '#787878'
+};
     border-radius: 8px;
     padding: 2px;
     font-size: 0.786rem;
@@ -25,31 +28,38 @@ export const StyledTag = styled.div`
     margin: 1px;
 `;
 
-export const StyledItemsContainer = styled.div`
+export const StyledFiltersContainer = styled.div`
     display: flex;
-    flex-direction: column;
+    flex-flow: wrap;
+    justify-content: flex-start;
+    align-items: normal;
     width: 100%;
     text-align: left;
     border-top: solid;
 `;
 
-export const StyledCategoryItemContainer = styled.div`
+export const StyledCategoryContainer = styled.div`
     border-bottom: 1px solid #aaa;
     padding-bottom: 5px;
+    margin: 2px;
+    width: 220px;
 `;
 
-export const StyledCategoryItem = styled.div`
+export const StyledCategory = styled.div`
     display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
+    flex-flow: column wrap;
     width: fit-content;
-    max-height: 160px;
+    margin: 5px;
 `;
 
 export const StyledTagsConteiner = styled.div`
     margin: 5px;
     display: flex;
     flex-wrap: wrap;
+`;
+
+export const StyledSearchContainer = styled.div`
+    display: flex;
 `;
 
 export const StyledSearch = styled.input`

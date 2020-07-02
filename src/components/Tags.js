@@ -1,24 +1,39 @@
 import React, { useState } from 'react';
 import Tag from './Tag';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { StyledTagsConteiner } from '../styles';
 import { ALL_CATEGORIES_TAG } from '../constants';
+import { updateFilter } from '../actions';
 
 const Tags = () => {
 	const { filter } = useSelector(store => store);
+	const dispatch = useDispatch();
 	const [isExpanded, setIsExpanded] = useState(false);
 
-	let tags = <Tag value={ALL_CATEGORIES_TAG} />;
+	const tagsCount = filter.tags.length;
 
-	if (filter.tags.length) {
+	let tags = <Tag selected value={ALL_CATEGORIES_TAG} />;
+
+	const handleOnClearFilters = () => {
+		dispatch(updateFilter({ tags: [] }));
+	};
+
+	if (tagsCount) {
 		tags = (
 			<>
-				{filter.tags.slice(0, isExpanded ? filter.tags.length : 5).map((value, index) => (
-					<Tag key={value} value={value} index={index} />
+				{filter.tags.slice(0, isExpanded ? tagsCount : 5).map((value, index) => (
+					<Tag key={value} value={value} index={index} selected />
 				))}
-				{filter.tags.length > 5 && (
+				{(tagsCount < 6 || isExpanded) && (
 					<Tag
-						expand
+						selected
+						value='x'
+						onClick={handleOnClearFilters}
+					/>
+				)}
+				{tagsCount > 5 && (
+					<Tag
+						selected
 						value='...'
 						onClick={() => setIsExpanded(!isExpanded)}
 					/>
