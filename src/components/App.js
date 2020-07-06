@@ -8,7 +8,7 @@ import Filters from './Filters';
 const App = () => (
 	<StyledWrapper>
 		<StyledContainer>
-  			<Search />
+  			<Search />    
 			<Filters />
   			<BrowserRouter>
   				<Items />

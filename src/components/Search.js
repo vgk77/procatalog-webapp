@@ -3,9 +3,10 @@ import { StyledSearchContainer, StyledSearch } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter, updateSettings } from '../actions';
 import Tags from './Tags';
+import { FaAlignJustify, FaSearch } from 'react-icons/fa';
 
 const Search = () => {
-	const { filter, settings } = useSelector(store => store);
+	const { filter } = useSelector(store => store);
 	const dispatch = useDispatch();
 
 	const handleOnChange = event => {
@@ -13,16 +14,28 @@ const Search = () => {
 	};
 
 	const handleOnClickToggle = () => {
-		dispatch(updateSettings({ showFilters: !settings.showFilters }));
+		dispatch(updateSettings({ showFilters: true }));
 	};
 
 	return (
 		<div>
 			<StyledSearchContainer>
-				<button onClick={handleOnClickToggle}>show</button>
+				<FaAlignJustify
+					size={24}
+					style={{ alignSelf: 'center' }}
+					onClick={handleOnClickToggle}
+				/>
 				<StyledSearch
 					value={filter.search}
 					onChange={handleOnChange}
+				/>
+				<FaSearch
+					size={24}
+					style={{
+						alignSelf: 'center',
+						color: 'black',
+						marginLeft: -32,
+					}}
 				/>
 			</StyledSearchContainer>
 			<Tags />
