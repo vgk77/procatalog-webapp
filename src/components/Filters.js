@@ -36,8 +36,11 @@ const Filters = () => {
 			}}
 		>
 			<StyledFiltersContainer>
-			    {categories.map(value => (
-					<Category data={value} />
+			    {categories.map((value, index) => (
+					<Category
+						key={`category-${index}`}
+						data={value}
+					/>
 				))}
 			</StyledFiltersContainer>
 		</Popup>

@@ -26,10 +26,21 @@ export const updateSettings = payload => ({
 	payload,
 });
 
+export const fetchData = () => async dispatch => {
+	try {
+		const response = await request({
+			url: `${process.env.REACT_APP_BASE_URL}/items`,
+		});
+		dispatch(updateData(response));
+	} catch (e) {
+		console.error(e);
+	}
+};
+
 export const fetchCategories = () => async dispatch => {
 	try {
 		const response = await request({
-			url: 'http://localhost:8000/categories',
+			url: `${process.env.REACT_APP_BASE_URL}/categories`,
 		});
 		dispatch(setCategories(response));
 	} catch (e) {

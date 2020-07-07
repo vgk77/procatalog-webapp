@@ -22,7 +22,7 @@ const Tags = () => {
 		tags = (
 			<>
 				{filter.tags.slice(0, isExpanded ? tagsCount : 5).map((value, index) => (
-					<Tag key={value} value={value} index={index} selected />
+					<Tag key={`filter-${index}`} value={value} index={index} selected />
 				))}
 				{(tagsCount < 6 || isExpanded) && (
 					<Tag

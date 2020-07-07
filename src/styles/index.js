@@ -68,3 +68,34 @@ export const StyledSearch = styled.input`
     min-width: 320px;
     border-radius: 8px;
 `;
+
+export const StyledTable = styled.div`
+    padding: 1rem;
+
+    table {
+      width: 100%;
+      text-align: left;
+      border-spacing: 0;
+      border: 1px solid black;
+
+      tr {
+        :last-child {
+          td {
+            border-bottom: 0;
+          }
+        }
+      }
+
+      th,
+      td {
+        margin: 0;
+        padding: 0.5rem;
+        border-bottom: 1px solid black;
+        border-right: 1px solid black;
+
+        :last-child {
+          border-right: 0;
+        }
+      }
+    }
+`;

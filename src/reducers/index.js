@@ -4,7 +4,7 @@ import thunk from 'redux-thunk';
 
 const data = (state = [], action) => {
 	if (action.type === ACTIONS.UPDATE_DATA) {
-		return { ...state, ...action.payload };
+		return [ ...state, ...action.payload ];
 	}
 	return state;
 };

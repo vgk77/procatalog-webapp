@@ -1,6 +1,5 @@
 import React from 'react';
 import { StyledWrapper, StyledContainer } from '../styles';
-import { BrowserRouter } from 'react-router-dom';
 import Search from './Search';
 import Items from './Items';
 import Filters from './Filters';
@@ -10,9 +9,7 @@ const App = () => (
 		<StyledContainer>
   			<Search />    
 			<Filters />
-  			<BrowserRouter>
-  				<Items />
-  			</BrowserRouter>
+			<Items />
 		</StyledContainer>
 	</StyledWrapper>
 );

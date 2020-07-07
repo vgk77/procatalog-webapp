@@ -74,7 +74,10 @@ const Tag = ({ value, category, onClick, index, selected, addAll }) => {
 };
 
 Tag.propTypes = {
-	value: PropTypes.string.isRequired,
+	value: PropTypes.oneOfType([
+		PropTypes.string,
+		PropTypes.object,
+	]),
 	category: PropTypes.string,
 	onClick: PropTypes.func,
 	index: PropTypes.number,
