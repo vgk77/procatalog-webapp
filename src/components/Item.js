@@ -1,28 +1,27 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchSelectedItem } from '../actions';
 
 const Item = () => {
 	const { id } = useParams();
-	const { data } = useSelector(store => store);
-	const [item, setItem] = useState(null);
+	const dispatch = useDispatch();
+	const { selectedItem } = useSelector(store => store);
 
-	useEffect(() => { 
-		setItem(data.find(value =>
-			value._id === id
-		));
-	}, [data, id]);
+	useEffect(() => {
+		dispatch(fetchSelectedItem(id));
+	}, [dispatch, id]);
     
-	if (!item) {
+	if (!Object.keys(selectedItem).length) {
 		return <div>item not found</div>;
 	}
 
 	return (
 		<div style={{ textAlign: 'left', padding: 20 }}>
-			<div>Index: {item.index}</div>
-			<div>Name: {item.name}</div>
-			<div>Category: {item.category}</div>
-			<ul>Tags: {item.tags.map(value => (
+			<div>Index: {selectedItem.index}</div>
+			<div>Name: {selectedItem.name}</div>
+			<div>Category: {selectedItem.category}</div>
+			<ul>Tags: {selectedItem.tags.map(value => (
 				<li>{value}</li>
 			))}</ul>
 		</div>

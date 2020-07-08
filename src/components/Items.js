@@ -1,22 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import Table from './Table';
 import Sidebar from './Sidebar';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import Item from './Item';
-import { useDispatch } from 'react-redux';
-import { fetchData } from '../actions';
+import { useSelector } from 'react-redux';
 
 const Items = () => {
-	const dispatch = useDispatch();
+	const { data } = useSelector(store => store);
 
-	useEffect(() => {
-		dispatch(fetchData());
-	}, [dispatch]);
+	if (!data.length) {
+		return null;
+	}
 
 	return (
 		<div style={{ display: 'flex' }}>
 			<Sidebar />
-			<div style={{ flex: 3, background: '#5757de' }}>
+			<div style={{
+				flex: 3,
+				background: '#4c4c5f',
+				overflowY: 'auto',
+				maxHeight: '80vh',
+			}}>
 				<BrowserRouter>
 					<Switch>
 						<Route exact path="/" component={Table} />

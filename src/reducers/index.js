@@ -3,8 +3,8 @@ import { filterInitState, ACTIONS, settingsInitState } from '../constants';
 import thunk from 'redux-thunk';
 
 const data = (state = [], action) => {
-	if (action.type === ACTIONS.UPDATE_DATA) {
-		return [ ...state, ...action.payload ];
+	if (action.type === ACTIONS.SET_DATA) {
+		return [ ...action.payload ];
 	}
 	return state;
 };
@@ -12,6 +12,13 @@ const data = (state = [], action) => {
 const filter = (state = filterInitState, action) => {
 	if (action.type === ACTIONS.UPDATE_FILTER) {
 		return { ...state, ...action.payload };
+	}
+	return state;
+};
+
+const selectedItem = (state = {}, action) => {
+	if (action.type === ACTIONS.SET_SELECTED_ITEM) {
+		return { ...action.payload };
 	}
 	return state;
 };
@@ -36,6 +43,7 @@ const rootReducer = combineReducers({
 	data,
 	filter,
 	categories,
+	selectedItem,
 	settings,
 });
 

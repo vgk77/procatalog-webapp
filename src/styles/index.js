@@ -18,14 +18,23 @@ export const StyledContainer = styled.div`
 
 export const StyledTag = styled.div`
     background-color: ${props => props.selected
-		? '#bcbcbc'
-		: '#787878'
+    		? '#bcbcbc'
+    		: '#787878'
 };
     border-radius: 8px;
     padding: 2px;
     font-size: 0.786rem;
     width: fit-content;
     margin: 1px;
+    cursor: pointer;
+
+    :hover {
+      text-decoration: underline;
+    }
+
+    ${props => props.category
+		? 'background-color: transparent;text-decoration: underline;'
+		: ''}
 `;
 
 export const StyledFiltersContainer = styled.div`
@@ -79,6 +88,12 @@ export const StyledTable = styled.div`
       border: 1px solid black;
 
       tr {
+        :hover:not(.header) {
+          background-color: #a5a5a5;
+          text-decoration: underline;
+          cursor: pointer;
+        }
+
         :last-child {
           td {
             border-bottom: 0;
@@ -89,7 +104,8 @@ export const StyledTable = styled.div`
       th,
       td {
         margin: 0;
-        padding: 0.5rem;
+        padding: 0 0.5rem;
+        font-size: 0.875rem;
         border-bottom: 1px solid black;
         border-right: 1px solid black;
 

@@ -67,6 +67,7 @@ const Tag = ({ value, category, onClick, index, selected, addAll }) => {
 		<StyledTag
 			onClick={hangleOnClick}
 			selected={selected || isSelected}
+			category={addAll}
 		>
 			{value.value || value}
 		</StyledTag>

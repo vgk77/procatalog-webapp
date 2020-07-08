@@ -1,8 +1,8 @@
 import { ACTIONS } from '../constants';
 import { request } from '../utils';
 
-export const updateData = payload => ({
-	type: ACTIONS.UPDATE_DATA,
+export const setData = payload => ({
+	type: ACTIONS.SET_DATA,
 	payload,
 });
 
@@ -26,12 +26,18 @@ export const updateSettings = payload => ({
 	payload,
 });
 
-export const fetchData = () => async dispatch => {
+export const updateSelectedItem = payload => ({
+	type: ACTIONS.SET_SELECTED_ITEM,
+	payload,
+});
+
+export const fetchData = payload => async dispatch => {
 	try {
+		const { value, page } = payload;
 		const response = await request({
-			url: `${process.env.REACT_APP_BASE_URL}/items`,
+			url: `${process.env.REACT_APP_BASE_URL}/items?q=${value}&&_page=${page}&&_limit=20`,
 		});
-		dispatch(updateData(response));
+		dispatch(setData(response));
 	} catch (e) {
 		console.error(e);
 	}
@@ -43,6 +49,17 @@ export const fetchCategories = () => async dispatch => {
 			url: `${process.env.REACT_APP_BASE_URL}/categories`,
 		});
 		dispatch(setCategories(response));
+	} catch (e) {
+		console.error(e);
+	}
+};
+
+export const fetchSelectedItem = id => async dispatch => {
+	try {
+		const response = await request({
+			url: `${process.env.REACT_APP_BASE_URL}/items?_id=${id}`
+		});
+		dispatch(updateSelectedItem(response[0]));
 	} catch (e) {
 		console.error(e);
 	}

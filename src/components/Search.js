@@ -1,16 +1,32 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyledSearchContainer, StyledSearch } from '../styles';
-import { useDispatch, useSelector } from 'react-redux';
-import { updateFilter, updateSettings } from '../actions';
+import { useDispatch } from 'react-redux';
+import { updateSettings, fetchData, updateFilter } from '../actions';
+import { FiAlignJustify, FiSearch, FiX } from 'react-icons/fi';
 import Tags from './Tags';
-import { FaAlignJustify, FaSearch } from 'react-icons/fa';
 
 const Search = () => {
-	const { filter } = useSelector(store => store);
+	const [value, setValue] = useState('');
 	const dispatch = useDispatch();
 
 	const handleOnChange = event => {
-		dispatch(updateFilter({ search: event.target.value }));
+		setValue(event.target.value);
+	};
+
+	const handleOnKeyDown = event => {
+		if (event.key === 'Enter') {
+			dispatch(fetchData({ value }));
+			dispatch(updateFilter({ search: value }));
+	    }
+	};
+
+	const handleOnClickSearch = () => {
+		dispatch(fetchData({ value }));
+		dispatch(updateFilter({ search: value }));
+	};
+
+	const handleOnClickDelete = () => {
+		setValue('');
 	};
 
 	const handleOnClickToggle = () => {
@@ -20,23 +36,35 @@ const Search = () => {
 	return (
 		<div>
 			<StyledSearchContainer>
-				<FaAlignJustify
+				<FiAlignJustify
 					size={24}
 					style={{ alignSelf: 'center' }}
 					onClick={handleOnClickToggle}
 				/>
 				<StyledSearch
-					value={filter.search}
+					value={value}
 					onChange={handleOnChange}
+					onKeyDown={handleOnKeyDown}
 				/>
-				<FaSearch
-					size={24}
-					style={{
-						alignSelf: 'center',
-						color: 'black',
-						marginLeft: -32,
-					}}
-				/>
+				{!!value && (
+					<div style={{
+						marginLeft: -58,
+						marginRight: 10,
+						display: 'flex',
+						color: '#000',
+					}}>
+						<FiSearch
+							size={24}
+							onClick={handleOnClickSearch}
+							style={{ alignSelf: 'center' }}
+						/>
+						<FiX
+							size={24}
+							onClick={handleOnClickDelete}
+							style={{ alignSelf: 'center' }}
+						/>
+					</div>
+				)}
 			</StyledSearchContainer>
 			<Tags />
 		</div>
