@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledTag } from '../styles';
+import { Styled } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from '../actions';
 import { ALL_CATEGORIES_TAG } from '../constants';
@@ -64,13 +64,13 @@ const Tag = ({ value, category, onClick, index, selected, addAll }) => {
 	);
 
 	return (
-		<StyledTag
+		<Styled.Tag
 			onClick={hangleOnClick}
 			selected={selected || isSelected}
 			category={addAll}
 		>
 			{value.value || value}
-		</StyledTag>
+		</Styled.Tag>
 	);
 };
 

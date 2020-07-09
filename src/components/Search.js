@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { StyledSearchContainer, StyledSearch } from '../styles';
+import { Styled } from '../styles';
 import { useDispatch } from 'react-redux';
 import { updateSettings, fetchData, updateFilter } from '../actions';
 import { FiAlignJustify, FiSearch, FiX } from 'react-icons/fi';
@@ -35,24 +35,19 @@ const Search = () => {
 
 	return (
 		<div>
-			<StyledSearchContainer>
+			<Styled.SearchContainer>
 				<FiAlignJustify
 					size={24}
 					style={{ alignSelf: 'center' }}
 					onClick={handleOnClickToggle}
 				/>
-				<StyledSearch
+				<Styled.Search
 					value={value}
 					onChange={handleOnChange}
 					onKeyDown={handleOnKeyDown}
 				/>
 				{!!value && (
-					<div style={{
-						marginLeft: -58,
-						marginRight: 10,
-						display: 'flex',
-						color: '#000',
-					}}>
+					<Styled.SearchIconsContainer>
 						<FiSearch
 							size={24}
 							onClick={handleOnClickSearch}
@@ -63,9 +58,9 @@ const Search = () => {
 							onClick={handleOnClickDelete}
 							style={{ alignSelf: 'center' }}
 						/>
-					</div>
+					</Styled.SearchIconsContainer>
 				)}
-			</StyledSearchContainer>
+			</Styled.SearchContainer>
 			<Tags />
 		</div>
 	);

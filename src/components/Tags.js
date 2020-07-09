@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import Tag from './Tag';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyledTagsConteiner } from '../styles';
+import { Styled } from '../styles';
 import { ALL_CATEGORIES_TAG } from '../constants';
 import { updateFilter } from '../actions';
 
@@ -43,10 +43,10 @@ const Tags = () => {
 	}
 
 	return (
-		<StyledTagsConteiner>
+		<Styled.TagsConteiner>
 			<div>Search in:</div>
 			{tags}
-		</StyledTagsConteiner>
+		</Styled.TagsConteiner>
 	);
 };
 

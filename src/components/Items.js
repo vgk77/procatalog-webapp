@@ -1,33 +1,25 @@
 import React from 'react';
 import Table from './Table';
 import Sidebar from './Sidebar';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Item from './Item';
 import { useSelector } from 'react-redux';
+import { Styled } from '../styles';
 
 const Items = () => {
-	const { data } = useSelector(store => store);
+	const { data, selectedItem } = useSelector(store => store);
 
-	if (!data.length) {
-		return null;
-	}
+	const isShow = data.items.length || Object.keys(selectedItem).length;
 
 	return (
-		<div style={{ display: 'flex' }}>
+		<div style={{ display: isShow ? 'flex' : 'none' }}>
 			<Sidebar />
-			<div style={{
-				flex: 3,
-				background: '#4c4c5f',
-				overflowY: 'auto',
-				maxHeight: '80vh',
-			}}>
-				<BrowserRouter>
-					<Switch>
-						<Route exact path="/" component={Table} />
-			    		<Route exact path="/items/:id" component={Item} />
-					</Switch>
-				</BrowserRouter>
-			</div>
+			<Styled.ItemsContainer>
+				<Switch>
+					<Route exact path="/" component={Table} />
+		    		<Route exact path="/items/:id" component={Item} />
+				</Switch>
+			</Styled.ItemsContainer>
 		</div>
 	);
 };

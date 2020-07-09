@@ -7,6 +7,9 @@ export const ACTIONS = {
 	UPDATE_CATEGORIES: 'UPDATE_CATEGORIES',
 	UPDATE_SETTINGS: 'UPDATE_SETTINGS',
 	SET_SELECTED_ITEM: 'SET_SELECTED_ITEM',
+	CALCULATE_FILTERS: 'CALCULATE_FILTERS',
+	UPDATE_ACTIVE_FILTERS: 'UPDATE_ACTIVE_FILTERS',
+	CALCULATE_FILTERED_ITEMS: 'CALCULATE_FILTERED_ITEMS',
 };
 
 export const tableInitialState = {
@@ -17,6 +20,13 @@ export const tableInitialState = {
 export const filterInitState = {
 	search: '',
 	tags: [],
+	activeFilters: [],
+	sidebarFilters: [],
+};
+
+export const dataInitState = {
+	items: [],
+	filteredItems: [],
 };
 
 export const settingsInitState = {

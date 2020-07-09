@@ -1,5 +1,18 @@
 import { METHODS, DEFAULT_HEADERS } from '../constants';
 
+export const calculateFilteredData = (data, filters) => {
+	if (!filters.length) {
+		return data;
+	}
+	return data.filter(value =>
+		value.filters.some(filter =>
+			filters.some(activeFilter =>
+				filter.values.includes(activeFilter)
+			)
+		),
+	);
+};
+
 export const generateGetParams = data => {
 	let params = '';
 

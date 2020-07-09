@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories, updateSettings } from '../actions';
 import Category from './Category';
-import { StyledFiltersContainer } from '../styles';
+import { Styled } from '../styles';
 import Popup from 'reactjs-popup';
 
 const Filters = () => {
@@ -35,14 +35,14 @@ const Filters = () => {
 				borderColor: '#363636',
 			}}
 		>
-			<StyledFiltersContainer>
+			<Styled.FiltersContainer>
 			    {categories.map((value, index) => (
 					<Category
 						key={`category-${index}`}
 						data={value}
 					/>
 				))}
-			</StyledFiltersContainer>
+			</Styled.FiltersContainer>
 		</Popup>
 	);
 };

@@ -1,17 +1,20 @@
 import React from 'react';
-import { StyledWrapper, StyledContainer } from '../styles';
+import { Styled } from '../styles';
 import Search from './Search';
 import Items from './Items';
 import Filters from './Filters';
+import { BrowserRouter } from 'react-router-dom';
 
 const App = () => (
-	<StyledWrapper>
-		<StyledContainer>
-  			<Search />    
-			<Filters />
-			<Items />
-		</StyledContainer>
-	</StyledWrapper>
+	<Styled.Wrapper>
+		<Styled.Container>
+			<BrowserRouter>
+	  			<Search />    
+				<Filters />
+				<Items />
+			</BrowserRouter>
+		</Styled.Container>
+	</Styled.Wrapper>
 );
 
 export default App;

@@ -12,7 +12,7 @@ const Item = () => {
 		dispatch(fetchSelectedItem(id));
 	}, [dispatch, id]);
     
-	if (!Object.keys(selectedItem).length) {
+	if (!Object.keys(selectedItem).length || selectedItem.isEmpty) {
 		return <div>item not found</div>;
 	}
 

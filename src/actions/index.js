@@ -11,6 +11,16 @@ export const updateFilter = payload => ({
 	payload,
 });
 
+export const calculateFilteredItems = payload => ({
+	type: ACTIONS.CALCULATE_FILTERED_ITEMS,
+	payload,
+});
+
+export const updateActiveFilters = payload => ({
+	type: ACTIONS.UPDATE_ACTIVE_FILTERS,
+	payload,
+});
+
 export const updateCategories = payload => ({
 	type: ACTIONS.UPDATE_CATEGORIES,
 	payload,
@@ -28,6 +38,11 @@ export const updateSettings = payload => ({
 
 export const updateSelectedItem = payload => ({
 	type: ACTIONS.SET_SELECTED_ITEM,
+	payload,
+});
+
+export const calculateFilters = payload => ({
+	type: ACTIONS.CALCULATE_FILTERS,
 	payload,
 });
 
@@ -59,7 +74,7 @@ export const fetchSelectedItem = id => async dispatch => {
 		const response = await request({
 			url: `${process.env.REACT_APP_BASE_URL}/items?_id=${id}`
 		});
-		dispatch(updateSelectedItem(response[0]));
+		dispatch(updateSelectedItem(response[0] || { isEmpty: true }));
 	} catch (e) {
 		console.error(e);
 	}

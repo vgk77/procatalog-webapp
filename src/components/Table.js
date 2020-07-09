@@ -7,7 +7,7 @@ import {
 } from 'react-table';
 import { useHistory } from 'react-router';
 import { useSelector, useDispatch } from 'react-redux';
-import { StyledTable } from '../styles';
+import { Styled } from '../styles';
 import {
 	FiChevronUp,
 	FiChevronDown,
@@ -51,7 +51,7 @@ const Table = () => {
 	    // state: { pageIndex },
 	} = useTable(
 		{
-			data: useMemo(() => tableData, [tableData]),
+			data: useMemo(() => tableData.filteredItems, [tableData.filteredItems]),
 			columns,
 			defaultColumn,
 			initialState: tableInitialState,
@@ -86,7 +86,7 @@ const Table = () => {
 	};
 
 	return (
-		<StyledTable>
+		<Styled.Table>
 			<table {...getTableProps()}>
 				<thead>
 					{headerGroups.map(headerGroup => (
@@ -149,7 +149,7 @@ const Table = () => {
 				  	{<FiChevronsRight/>}
 		        </button>
 		      </div>
-		</StyledTable>
+		</Styled.Table>
 	);
 };
 

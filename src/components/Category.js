@@ -1,13 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { StyledCategoryContainer, StyledCategory } from '../styles';
+import { Styled } from '../styles';
 import Tag from './Tag';
 
 const Category = ({ data }) => {
 	return (
-		<StyledCategoryContainer>
+		<Styled.CategoryContainer>
 			<Tag addAll value={data.category} />
-			<StyledCategory>
+			<Styled.Category>
     			{data.tags.map(tag => (
 					<Tag
 						key={tag}
@@ -15,8 +15,8 @@ const Category = ({ data }) => {
 						category={data.category}
 					/>
     			))}
-			</StyledCategory>
-		</StyledCategoryContainer>
+			</Styled.Category>
+		</Styled.CategoryContainer>
 	);
 };
 

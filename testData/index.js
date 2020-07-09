@@ -25,6 +25,18 @@ module.exports = () => {
             tags: _.fill(Array(_.random(1, 10)), 0).map(value =>
                 faker.commerce.product()
             ),
+            filters: [
+                {
+                    name: 'Material',
+                    helper: 'Product material',
+                    values: [faker.commerce.productMaterial()],
+                },
+                {
+                    name: 'Adjective',
+                    helper: 'Product adjective',
+                    values: [faker.commerce.productAdjective()],
+                },
+            ],
         });
     });
     return data;
