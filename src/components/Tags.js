@@ -4,6 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Styled } from '../styles';
 import { ALL_CATEGORIES_TAG } from '../constants';
 import { updateFilter } from '../actions';
+import { FiX, FiMoreHorizontal } from 'react-icons/fi';
 
 const Tags = () => {
 	const { filter } = useSelector(store => store);
@@ -27,14 +28,14 @@ const Tags = () => {
 				{(tagsCount < 6 || isExpanded) && (
 					<Tag
 						selected
-						value='x'
+						value={(<FiX/>)}
 						onClick={handleOnClearFilters}
 					/>
 				)}
 				{tagsCount > 5 && (
 					<Tag
 						selected
-						value='...'
+						value={(<FiMoreHorizontal/>)}
 						onClick={() => setIsExpanded(!isExpanded)}
 					/>
 				)}

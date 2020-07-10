@@ -37,6 +37,10 @@ const Sidebar = () => {
 		),
 	));
 
+	if (!filter.sidebarFilters.length) {
+		return null;
+	}
+
 	return (
 		<Styled.SidebarContainer>
 			<div>Filter</div>

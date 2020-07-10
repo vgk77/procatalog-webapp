@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const ColumnFilter = ({
 	column: {
@@ -17,6 +18,10 @@ const ColumnFilter = ({
 			placeholder={`Search ${count} records...`}
 		/>
 	);
+};
+
+ColumnFilter.propTypes = {
+	column: PropTypes.object.isRequired,
 };
 
 export default ColumnFilter;
