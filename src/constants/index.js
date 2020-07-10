@@ -24,6 +24,11 @@ export const filterInitState = {
 	sidebarFilters: [],
 };
 
+export const categoriesInitState = {
+	byCategory: [],
+	byAlphabet: [],
+};
+
 export const dataInitState = {
 	items: [],
 	filteredItems: [],

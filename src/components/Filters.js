@@ -1,13 +1,15 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchCategories, updateSettings } from '../actions';
 import Category from './Category';
 import { Styled } from '../styles';
 import Popup from 'reactjs-popup';
+import Toggle from './Toggle';
 
 const Filters = () => {
 	const { categories, settings } = useSelector(store => store);
 	const dispatch = useDispatch();
+	const [isAlphabetView, setIsAlphabetView] = useState(true);
 
 	useEffect(() => {
 		dispatch(fetchCategories());
@@ -19,6 +21,10 @@ const Filters = () => {
 
 	const handleOnClosePopup = () => {
 		dispatch(updateSettings({ showFilters: false }));
+	};
+
+	const handleOnSwitch = () => {
+		setIsAlphabetView(!isAlphabetView);
 	};
 
 	return (
@@ -35,14 +41,27 @@ const Filters = () => {
 				borderColor: '#363636',
 			}}
 		>
-			<Styled.FiltersContainer>
-			    {categories.map((value, index) => (
-					<Category
-						key={`category-${index}`}
-						data={value}
+			<>
+				<Styled.FilterSwitchContainer>
+					<span>Alphabetically</span>
+					<Toggle
+						checked={isAlphabetView}
+						onChange={handleOnSwitch}
 					/>
-				))}
-			</Styled.FiltersContainer>
+				</Styled.FilterSwitchContainer>
+				<Styled.FiltersContainer>
+					{categories[isAlphabetView
+						? 'byAlphabet'
+						: 'byCategory'
+					].map((value, index) => (
+						<Category
+							key={`category-${index}-${isAlphabetView}`}
+							data={value}
+							isAlphabetView={isAlphabetView}
+						/>
+					))}
+				</Styled.FiltersContainer>
+			</>
 		</Popup>
 	);
 };

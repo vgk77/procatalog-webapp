@@ -4,8 +4,18 @@ import { Styled } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateFilter } from '../actions';
 import { ALL_CATEGORIES_TAG } from '../constants';
+import { isFunction } from '../utils';
 
-const Tag = ({ value, category, onClick, index, selected, addAll }) => {
+const Tag = ({
+	value,
+	category,
+	onClick,
+	index,
+	selected,
+	addAll,
+	title,
+	isAlphabetView,
+}) => {
 	const dispatch = useDispatch();
 	const { filter, categories } = useSelector(store => store);
 
@@ -16,26 +26,35 @@ const Tag = ({ value, category, onClick, index, selected, addAll }) => {
 
 		const { tags } = filter;
 
-		if (onClick && {}.toString.call(onClick) === '[object Function]') {
+		if (isFunction(onClick)) {
 			onClick();
 		} else if (addAll) {
-			const categoryTags = categories.filter(data =>
+			const categoryTags = (categories[
+				isAlphabetView
+					? 'byAlphabet'
+					: 'byCategory'
+			].filter(data =>
 				data.category === value
-			)[0].tags;
+			)[0] || { tags: [] }).tags;
 			
 			const isAllAdded =  categoryTags.every(tag =>
 				tags.findIndex(data =>
-					data.category === value && data.value === tag
+					data.category === (tag.category || value)
+						&& data.value === (tag.value || tag)
 				) > -1
 			);
 
 			categoryTags.forEach(tag => {
 				const filteredIndex = tags.findIndex(data =>
-					data.category === value && data.value === tag
+					data.category === (tag.category || value)
+						&& data.value === (tag.value || tag)
 				);
 
 				if (filteredIndex < 0) {
-					tags.push({ category: value, value: tag });
+					tags.push({
+						category: (tag.category || value),
+						value: (tag.value || tag),
+					});
 				} else if (filteredIndex > -1 && isAllAdded) {
 					tags.splice(filteredIndex, 1);
 				}
@@ -69,7 +88,7 @@ const Tag = ({ value, category, onClick, index, selected, addAll }) => {
 			selected={selected || isSelected}
 			category={addAll}
 		>
-			{value.value || value}
+			{title || value.value || value}
 		</Styled.Tag>
 	);
 };
@@ -84,6 +103,8 @@ Tag.propTypes = {
 	index: PropTypes.number,
 	selected: PropTypes.bool,
 	addAll: PropTypes.bool,
+	title: PropTypes.string,
+	isAlphabetView: PropTypes.bool,
 };
 
 export default Tag;

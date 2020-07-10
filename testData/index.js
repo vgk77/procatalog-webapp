@@ -10,9 +10,9 @@ module.exports = () => {
     _.fill(Array(_.random(10, 30)), 0).forEach(value => {
         data.categories.push({
             category: faker.commerce.department(),
-            tags: _.fill(Array(_.random(1, 10)), 0).map(value =>
+            tags: _.uniq(_.fill(Array(_.random(2, 10)), 0).map(value =>
                 faker.commerce.product()
-            ),
+            )),
         });
     });
 
@@ -22,9 +22,9 @@ module.exports = () => {
             _id: faker.random.uuid(),
             name: faker.commerce.productName(),
             category: faker.commerce.department(),
-            tags: _.fill(Array(_.random(1, 10)), 0).map(value =>
+            tags: _.uniq(_.fill(Array(_.random(2, 10)), 0).map(value =>
                 faker.commerce.product()
-            ),
+            )),
             filters: [
                 {
                     name: 'Material',
@@ -39,5 +39,5 @@ module.exports = () => {
             ],
         });
     });
-    return data;
+    return { ...data, categories: _.uniqBy(data.categories, 'category') };
 };

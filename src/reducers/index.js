@@ -1,7 +1,7 @@
 import { combineReducers, compose, createStore, applyMiddleware } from 'redux';
-import { filterInitState, dataInitState, ACTIONS, settingsInitState } from '../constants';
+import { filterInitState, dataInitState, ACTIONS, settingsInitState, categoriesInitState } from '../constants';
 import thunk from 'redux-thunk';
-import { calculateFilteredData } from '../utils';
+import { calculateFilteredData, calculateCategoriesAlphabely } from '../utils';
 
 const data = (state = dataInitState, action) => {
 	if (action.type === ACTIONS.SET_DATA) {
@@ -65,11 +65,14 @@ const selectedItem = (state = {}, action) => {
 	return state;
 };
 
-const categories = (state = [], action) => {
+const categories = (state = categoriesInitState, action) => {
 	if (action.type === ACTIONS.SET_CATEGORIES) {
-		return [ ...action.payload ];
+		return {
+			byCategory: action.payload,
+			byAlphabet: calculateCategoriesAlphabely(action.payload),
+		};
 	} else if (action.type === ACTIONS.UPDATE_CATEGORIES) {
-		return [ ...state, ...action.payload ];
+		return { ...state, ...action.payload };
 	}
 	return state;
 };

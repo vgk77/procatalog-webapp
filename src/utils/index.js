@@ -13,6 +13,36 @@ export const calculateFilteredData = (data, filters) => {
 	);
 };
 
+export const calculateCategoriesAlphabely = data => {
+	const tags = [];
+	const result = [];
+	data.forEach(category => {
+		category.tags.forEach(value => {
+			tags.push({
+				category: category.category,
+				value,
+			});
+		});
+	});
+	tags.sort((a, b) =>
+		a.value.localeCompare(b.value)
+	).forEach(value => {
+		const index = result.findIndex(tag =>
+			tag.category === value.value[0],
+		);
+		if (index > -1) {
+			result[index].tags = [...result[index].tags, value];
+		} else {
+			result.push({ category: value.value[0], tags: [value] });
+		}
+		
+	});
+	return result;
+};
+
+export const isFunction = value =>
+	value && {}.toString.call(value) === '[object Function]';
+
 export const generateGetParams = data => {
 	let params = '';
 
