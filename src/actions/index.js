@@ -46,6 +46,16 @@ export const calculateFilters = payload => ({
 	payload,
 });
 
+export const toggleAllTags = payload => ({
+	type: ACTIONS.FILTER_TOGGLE_ALL_TAGS,
+	payload,
+});
+
+export const toggleTag = payload => ({
+	type: ACTIONS.FILTER_TOGGLE_TAG,
+	payload,
+});
+
 export const fetchData = payload => async dispatch => {
 	try {
 		const { value, page } = payload;

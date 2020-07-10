@@ -54,6 +54,50 @@ const filter = (state = filterInitState, action) => {
 			activeFilters.splice(index, 1);
 		}
 		return { ...state, activeFilters };
+	} else if (action.type === ACTIONS.FILTER_TOGGLE_ALL_TAGS) {
+		const { value, categories, tags } = action.payload;
+		const categoryTags = (categories.filter(data =>
+			data.category === value
+		)[0] || { tags: [] }).tags;
+		
+		const isAllAdded =  categoryTags.every(tag =>
+			tags.findIndex(data =>
+				data.category === (tag.category || value)
+					&& data.value === (tag.value || tag)
+			) > -1
+		);
+
+		categoryTags.forEach(tag => {
+			const filteredIndex = tags.findIndex(data =>
+				data.category === (tag.category || value)
+					&& data.value === (tag.value || tag)
+			);
+
+			if (filteredIndex < 0) {
+				tags.push({
+					category: (tag.category || value),
+					value: (tag.value || tag),
+				});
+			} else if (filteredIndex > -1 && isAllAdded) {
+				tags.splice(filteredIndex, 1);
+			}
+		});
+		return { ...state, tags };
+	} else if (action.type === ACTIONS.FILTER_TOGGLE_TAG) {
+		const { value, index, category, tags } = action.payload;
+		if (index > -1) {
+			tags.splice(index, 1);
+		} else {
+			const filteredIndex = tags.findIndex(data =>
+				data.category === category && data.value === value
+			);
+			if (filteredIndex < 0) {
+				tags.push({ category, value });
+			} else {
+				tags.splice(filteredIndex, 1);
+			}
+		}
+		return { ...state, tags };
 	}
 	return state;
 };

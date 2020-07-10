@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Styled } from '../styles';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateFilter } from '../actions';
+import { toggleTag, toggleAllTags } from '../actions';
 import { ALL_CATEGORIES_TAG } from '../constants';
 import { isFunction } from '../utils';
 
@@ -25,55 +25,19 @@ const Tag = ({
 		}
 
 		const { tags } = filter;
-
 		if (isFunction(onClick)) {
 			onClick();
 		} else if (addAll) {
-			const categoryTags = (categories[
-				isAlphabetView
+			dispatch(toggleAllTags({
+				tags,
+				value,
+				categories: categories[isAlphabetView
 					? 'byAlphabet'
 					: 'byCategory'
-			].filter(data =>
-				data.category === value
-			)[0] || { tags: [] }).tags;
-			
-			const isAllAdded =  categoryTags.every(tag =>
-				tags.findIndex(data =>
-					data.category === (tag.category || value)
-						&& data.value === (tag.value || tag)
-				) > -1
-			);
-
-			categoryTags.forEach(tag => {
-				const filteredIndex = tags.findIndex(data =>
-					data.category === (tag.category || value)
-						&& data.value === (tag.value || tag)
-				);
-
-				if (filteredIndex < 0) {
-					tags.push({
-						category: (tag.category || value),
-						value: (tag.value || tag),
-					});
-				} else if (filteredIndex > -1 && isAllAdded) {
-					tags.splice(filteredIndex, 1);
-				}
-			});
-			dispatch(updateFilter({ tags }));
+				],
+			}));
 		} else {
-			if (index > -1) {
-				tags.splice(index, 1);
-			} else {
-				const filteredIndex = tags.findIndex(data =>
-					data.category === category && data.value === value
-				);
-				if (filteredIndex < 0) {
-					tags.push({ category, value });
-				} else {
-					tags.splice(filteredIndex, 1);
-				}
-			}
-			dispatch(updateFilter({ tags }));
+			dispatch(toggleTag({ value, index, category, tags }));
 		}
 	};
 
