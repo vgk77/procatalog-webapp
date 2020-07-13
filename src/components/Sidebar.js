@@ -34,8 +34,7 @@ const Sidebar = () => {
 				/>
 				<div>{value}</div>
 			</div>
-		),
-	));
+		)));
 
 	if (!filter.sidebarFilters.length) {
 		return null;
@@ -51,13 +50,8 @@ const Sidebar = () => {
 					{value.values.length > 5 && (
 						<Popup
 							trigger={<div style={{ alignSelf: 'start' }}>more...</div>}
-							contentStyle={{
-								overflowY: 'auto',
-								maxHeight: '80vh',
-								backgroundColor: '#262626',
-								borderColor: '#363636',
-							}}
 							position="right center"
+							arrow={false}
 						>
 							{getFilters(value.values, false)}
 						</Popup>

@@ -12,7 +12,7 @@ const Items = () => {
 	const isShow = data.items.length || Object.keys(selectedItem).length;
 
 	return (
-		<div style={{ display: isShow ? 'flex' : 'none' }}>
+		<Styled.ItemsRoot display={isShow ? 'flex' : 'none'}>
 			<Sidebar />
 			<Styled.ItemsContainer>
 				<Switch>
@@ -20,7 +20,7 @@ const Items = () => {
 		    		<Route exact path="/items/:id" component={Item} />
 				</Switch>
 			</Styled.ItemsContainer>
-		</div>
+		</Styled.ItemsRoot>
 	);
 };
 

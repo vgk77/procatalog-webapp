@@ -1,11 +1,60 @@
-import styled from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
+import theme from 'styled-theming';
+
+export const backgroundColor = theme('mode', {
+	light: '#fff',
+	dark: '#262626',
+});
+
+export const textColor = theme('mode', {
+	light: '#000',
+	dark: '#fff',
+});
+
+export const borderColor = theme('mode', {
+	light: '#3c3c3c',
+	dark: '#3c3c3c',
+});
+
+export const hoverColor = theme('mode', {
+	light: '#acacac',
+	dark: '#3c3c3c'
+});
+
+export const GlobalStyle = createGlobalStyle`
+  .popup-content {
+    overflow-y: auto;
+		max-height: 80vh;
+		background-color: ${backgroundColor} !important;
+    border-color: ${borderColor} !important;
+    box-shadow: 2px 4px 8px 1px #0f0f0f !important;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: ${backgroundColor};
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: ${borderColor};
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: ${hoverColor};
+  }
+`;
 
 export const Styled = {
 	Wrapper: styled.div`
     min-height: 100vh;
-    background: #262626;
+    background: ${backgroundColor};
     display: flex;
     align-items: center;
+    color: ${textColor};
   `,
 	Container: styled.div`
     width: 100%;
@@ -16,7 +65,7 @@ export const Styled = {
     padding: 20px;
   `,
 	Tag: styled.div`
-    background-color: ${props => props.selected ? '#bcbcbc' : '#787878'};
+    background-color: ${props => props.selected ? '#cacaca' : '#9a9a9a'};
     border-radius: 8px;
     padding: 2px;
     font-size: 0.786rem;
@@ -39,7 +88,7 @@ export const Styled = {
     text-align: left;
   `,
 	CategoryContainer: styled.div`
-    border-bottom: 1px solid #aaa;
+    border-bottom: 1px solid ${borderColor};
     padding-bottom: 5px;
     margin: 2px;
     width: 220px;
@@ -71,11 +120,11 @@ export const Styled = {
       width: 100%;
       text-align: left;
       border-spacing: 0;
-      border: 1px solid black;
+      border: 1px solid ${borderColor};
 
       tr {
         :hover:not(.header) {
-          background-color: #a5a5a5;
+          background-color: ${hoverColor};
           text-decoration: underline;
           cursor: pointer;
         }
@@ -92,8 +141,8 @@ export const Styled = {
         margin: 0;
         padding: 0 0.5rem;
         font-size: 0.875rem;
-        border-bottom: 1px solid black;
-        border-right: 1px solid black;
+        border-bottom: 1px solid ${borderColor};
+        border-right: 1px solid ${borderColor};
 
         :last-child {
           border-right: 0;
@@ -101,38 +150,56 @@ export const Styled = {
       }
     }
   `,
-  SidebarContainer: styled.div`
+	SidebarContainer: styled.div`
     flex: 1;
-		background: #9046d4;
+    padding: 1rem;
 		overflow-x: hidden;
 		overflow-y: auto;
-		max-height: 80vh;
+		max-height: 100vh;
 		display: flex;
 		flex-direction: column;
-		align-items: start;
+    align-items: start;
+    border-right: 1px solid ${borderColor};
   `,
-  FilterCategory: styled.div`
-    border-bottom: 1px solid #3c3c3c;
+	FilterCategory: styled.div`
+    border-bottom: 1px solid ${borderColor};
 		width: 100%;
 		display: flex;
 		flex-direction: column;
 		padding: 0 10px 10px;
   `,
-  ItemsContainer: styled.div`
+	ItemsContainer: styled.div`
     flex: 4;
-		background: #4c4c5f;
 		overflow-y: auto;
-		max-height: 80vh;
+		max-height: 100vh;
   `,
-  SearchIconsContainer: styled.div`
+	SearchIconsContainer: styled.div`
     margin: 0px 10px 0px -58px;
 		display: flex;
 		color: #000;
   `,
-  FilterSwitchContainer: styled.div`
+	FilterSwitchContainer: styled.div`
       display: flex;
       padding: 10px;
       float: right;
+  `,
+	ColumnFilterInput: styled.input`
+      border-color: transparent;
+      background-color: transparent;
+      color: ${textColor};
+      width: 100%;
+      margin: 2px;
+      margin-left: -4px;
+  `,
+	ItemsRoot: styled.div`
+    display: ${props => props.display || 'flex'};
+    border: 1px solid ${borderColor};
+    border-radius: 10px;
+  `,
+	ToggleThemeContainer: styled.div`
+    position: absolute;
+    top: 10px;
+    right: 0;
   `,
 };
 

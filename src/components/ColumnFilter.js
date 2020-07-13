@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Styled } from '../styles';
 
 const ColumnFilter = ({
 	column: {
@@ -10,7 +11,7 @@ const ColumnFilter = ({
 }) => {
 	const count = preFilteredRows.length;
 	return (
-		<input
+		<Styled.ColumnFilterInput
 			value={filterValue || ''}
 			onChange={e => {
 				setFilter(e.target.value || undefined);

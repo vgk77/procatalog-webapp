@@ -11,7 +11,7 @@ export const ACTIONS = {
 	UPDATE_ACTIVE_FILTERS: 'UPDATE_ACTIVE_FILTERS',
 	CALCULATE_FILTERED_ITEMS: 'CALCULATE_FILTERED_ITEMS',
 	FILTER_TOGGLE_ALL_TAGS: 'FILTER_TOGGLE_ALL_TAGS',
-	FILTER_TOGGLE_TAG: 'FILTER_TOGGLE_TAG', 
+	FILTER_TOGGLE_TAG: 'FILTER_TOGGLE_TAG',
 };
 
 export const tableInitialState = {
@@ -38,6 +38,7 @@ export const dataInitState = {
 
 export const settingsInitState = {
 	showFilters: false,
+	theme: 'dark',
 };
 
 export const METHODS = {

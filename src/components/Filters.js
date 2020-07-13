@@ -9,7 +9,7 @@ import Toggle from './Toggle';
 const Filters = () => {
 	const { categories, settings } = useSelector(store => store);
 	const dispatch = useDispatch();
-	const [isAlphabetView, setIsAlphabetView] = useState(true);
+	const [isAlphabetView, setIsAlphabetView] = useState(false);
 
 	useEffect(() => {
 		dispatch(fetchCategories());
@@ -34,17 +34,13 @@ const Filters = () => {
 			closeOnEscape
 			position="bottom center"
 			onClose={handleOnClosePopup}
-			contentStyle={{
-				overflowY: 'auto',
-				maxHeight: '80vh',
-				backgroundColor: '#262626',
-				borderColor: '#363636',
-			}}
+			arrow={false}
 		>
 			<>
 				<Styled.FilterSwitchContainer>
 					<span>Alphabetically</span>
 					<Toggle
+						name="filter"
 						checked={isAlphabetView}
 						onChange={handleOnSwitch}
 					/>
