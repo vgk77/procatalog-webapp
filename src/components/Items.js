@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from './Table';
+import ItemsTable from './ItemsTable';
 import Sidebar from './Sidebar';
 import { Route, Switch } from 'react-router-dom';
 import Item from './Item';
@@ -16,7 +16,7 @@ const Items = () => {
 			<Sidebar />
 			<Styled.ItemsContainer>
 				<Switch>
-					<Route exact path="/" component={Table} />
+					<Route exact path="/" component={ItemsTable} />
 		    		<Route exact path="/items/:id" component={Item} />
 				</Switch>
 			</Styled.ItemsContainer>

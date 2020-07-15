@@ -25,10 +25,19 @@ module.exports = () => {
             tags: _.uniq(_.fill(Array(_.random(2, 10)), 0).map(value =>
                 faker.commerce.product()
             )),
-            mainImage: faker.image.avatar(),
             images: _.uniq(_.fill(Array(_.random(2, 15)), 0).map(value =>
                 faker.image.avatar()
             )),
+            description: _.uniq(_.fill(Array(_.random(0, 5)), 0).map(value =>
+                faker.lorem.paragraph(),
+            )),
+            specification: _.uniq(_.fill(Array(_.random(2, 15)), 0).map(value => ({
+                title: faker.commerce.department(),
+                values: _.uniq(_.fill(Array(_.random(2, 15)), 0).map(value => ({
+                    title: faker.commerce.productName(),
+                    value: faker.commerce.price(),
+                }))),
+            }))),
             filters: [
                 {
                     name: 'Material',

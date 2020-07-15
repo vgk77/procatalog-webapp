@@ -31,6 +31,24 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
   }
 
+  .item-image {
+    width: 320px;
+  }
+
+  .item-original-thumbnail,
+  .image-gallery-thumbnails-wrapper.left {
+    width: 64px;
+  }
+
+  .image-gallery-icon.image-gallery-fullscreen-button {
+    top: 0;
+    bottom: initial;
+  }
+
+  .image-gallery-bullet {
+    margin: 5px !important;
+  }
+
   ::-webkit-scrollbar {
     width: 10px;
   }
@@ -120,19 +138,12 @@ export const Styled = {
       width: 100%;
       text-align: left;
       border-spacing: 0;
-      border: 1px solid ${borderColor};
 
       tr {
         :hover:not(.header) {
           background-color: ${hoverColor};
           text-decoration: underline;
           cursor: pointer;
-        }
-
-        :last-child {
-          td {
-            border-bottom: 0;
-          }
         }
       }
 
@@ -142,10 +153,11 @@ export const Styled = {
         padding: 0 0.5rem;
         font-size: 0.875rem;
         border-bottom: 1px solid ${borderColor};
-        border-right: 1px solid ${borderColor};
+      }
 
-        :last-child {
-          border-right: 0;
+      :last-child {
+        td {
+          border-bottom: 0;
         }
       }
     }
