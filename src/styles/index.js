@@ -31,18 +31,21 @@ export const GlobalStyle = createGlobalStyle`
     border-radius: 10px;
   }
 
-  .item-image {
+  .image-gallery .item-image {
     width: 320px;
+  }
+
+  .image-gallery.fullscreen-modal .item-image {
+    width: 100%;
+  }
+
+  .image-gallery-icon .image-gallery-svg {
+    height: 64px;
   }
 
   .item-original-thumbnail,
   .image-gallery-thumbnails-wrapper.left {
     width: 64px;
-  }
-
-  .image-gallery-icon.image-gallery-fullscreen-button {
-    top: 0;
-    bottom: initial;
   }
 
   .image-gallery-bullet {
@@ -78,7 +81,7 @@ export const Styled = {
     width: 100%;
     min-width: 340px;
     max-width: 1200px;
-    margin: 0 auto;
+    margin: 10px auto;
     text-align: center;
     padding: 20px;
   `,

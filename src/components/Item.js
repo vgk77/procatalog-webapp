@@ -61,9 +61,9 @@ const Item = () => {
 					items={images}
 					thumbnailPosition="left"
 					showPlayButton={false}
-					showBullets={true}
+					showBullets={false}
 					useBrowserFullscreen={false}
-					showNav={false}
+					showNav={true}
 					lazyLoad
 				/>
 				<div style={{ padding: 10 }}>
