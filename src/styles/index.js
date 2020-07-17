@@ -35,6 +35,15 @@ export const GlobalStyle = createGlobalStyle`
     width: 320px;
   }
 
+  .image-gallery-icon:focus {
+    outline: none;
+  }
+
+  .image-gallery-fullscreen-button {
+    padding: 0;
+    padding-right: 20px;
+  }
+
   .image-gallery.fullscreen-modal .item-image {
     width: 100%;
   }
