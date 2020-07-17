@@ -90,9 +90,10 @@ export const Styled = {
     width: 100%;
     min-width: 340px;
     max-width: 1200px;
-    margin: 10px auto;
+    margin: 20px auto;
     text-align: center;
     padding: 20px;
+    ${props => props.isSearchTop ? 'margin-bottom: auto;' : ''}
   `,
 	Tag: styled.div`
     background-color: ${props => props.selected ? '#cacaca' : '#9a9a9a'};

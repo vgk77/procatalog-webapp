@@ -4,9 +4,11 @@ import { useDispatch } from 'react-redux';
 import { updateSettings, fetchData, updateFilter } from '../actions';
 import { FiAlignJustify, FiSearch, FiX } from 'react-icons/fi';
 import Tags from './Tags';
+import { useHistory } from 'react-router';
 
 const Search = () => {
 	const [value, setValue] = useState('');
+	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const handleOnChange = event => {
@@ -15,14 +17,18 @@ const Search = () => {
 
 	const handleOnKeyDown = event => {
 		if (event.key === 'Enter') {
-			dispatch(fetchData({ value }));
-			dispatch(updateFilter({ search: value }));
+			handleOnAcceptSearch();
 	    }
 	};
 
 	const handleOnClickSearch = () => {
+		handleOnAcceptSearch();
+	};
+
+	const handleOnAcceptSearch = () => {
 		dispatch(fetchData({ value }));
 		dispatch(updateFilter({ search: value }));
+		history.push('/');
 	};
 
 	const handleOnClickDelete = () => {
